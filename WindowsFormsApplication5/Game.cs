@@ -21,7 +21,8 @@ namespace WindowsFormsApplication5
 
         private Thread moveThread = null;
         delegate void SetMoveCallback(int ball_x, int ball_y);
-
+        delegate void SetPlayer2PosCallBack(int p2);
+        private Thread listen = null;
         private Bitmap DrawArea;
         private int width;
         private int height;
@@ -84,6 +85,9 @@ namespace WindowsFormsApplication5
 
             this.moveThread = new Thread(new ThreadStart(this.MoveBall));
             this.moveThread.Start();
+
+            this.listen = new Thread(new ThreadStart(this.ListenClient));
+            this.listen.Start();
         }
 
 
@@ -143,8 +147,8 @@ namespace WindowsFormsApplication5
             label1.Text = "Player 1: " + Convert.ToString(punt_player1) + " points";
             label2.Text = "Player 2: " + Convert.ToString(punt_player2) + " points";
 
-            this.moveThread = new Thread(new ThreadStart(this.ListenServer));
-            this.moveThread.Start();
+            this.listen = new Thread(new ThreadStart(this.ListenServer));
+            this.listen.Start();
         }
 
         private void pictureBox1_Paint(object sender,
@@ -308,36 +312,53 @@ namespace WindowsFormsApplication5
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.D)
+
+            if (ishost)
             {
-                if (player1_x < width - 20)
+                if (e.KeyCode == Keys.D)
                 {
-                    player1_x += 10;
+                    if (player1_x < width - 20)
+                    {
+                        player1_x += 10;
+                    }
+
+                }
+                if (e.KeyCode == Keys.A)
+                {
+                    if (player1_x >= 10)
+                    {
+                        player1_x -= 10;
+                    }
+
+                }
+            }
+            else
+            {
+                //if client
+                if (e.KeyCode == Keys.Right)
+                {
+                    if (player2_x < width - 20)
+                    {
+                        player2_x += 10;
+                    }
+
+                }
+                if (e.KeyCode == Keys.Left)
+                {
+                    if (player2_x >= 10)
+                    {
+                        player2_x -= 10;
+                    }
+
                 }
 
-            }
-            if (e.KeyCode == Keys.A)
-            {
-                if (player1_x >= 10)
-                {
-                    player1_x -= 10;
-                }
+                ASCIIEncoding asen = new ASCIIEncoding();
+                byte[] ba = asen.GetBytes(Convert.ToString(player2_x));
+                
+                stm = tcpclnt.GetStream();
+                stm.Write(ba, 0, ba.Length);
 
-            }
-            if (e.KeyCode == Keys.Right)
-            {
-                if (player2_x < width - 20)
-                {
-                    player2_x += 10;
-                }
 
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                if (player2_x >= 10)
-                {
-                    player2_x -= 10;
-                }
 
             }
         }
@@ -382,6 +403,28 @@ namespace WindowsFormsApplication5
                 MoveCallback(ball_x, ball_y);
             }
         }
+
+        private void ListenClient()
+        {
+            while (true)
+            {
+                                
+                byte[] b = new byte[100];
+                int k = s.Receive(b);
+               
+                string aux = null;
+                for (int i = 0; i < k; i++)
+                {
+                    aux += Convert.ToChar(b[i]);
+                }
+
+                player2_x = Convert.ToInt16(aux);
+
+            }
+        }
+
+
+
     }
 }
 
