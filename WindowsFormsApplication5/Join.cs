@@ -111,6 +111,7 @@ namespace WindowsFormsApplication5
                     else if (aux == "start")
                     {
                         StartGame();
+                        this.connectThread.Abort();
                     }
                 }
             }
@@ -132,8 +133,7 @@ namespace WindowsFormsApplication5
                 Game game = new Game(tcpclnt, stm);
                 game.Tag = this;
                 game.Show(this);
-                game.Focus();
-                this.connectThread.Abort();
+                game.Focus();                
                 Hide();
             }
         }
