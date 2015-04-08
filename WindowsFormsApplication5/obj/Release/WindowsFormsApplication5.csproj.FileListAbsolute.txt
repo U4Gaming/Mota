@@ -1,0 +1,11 @@
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\bin\Release\WindowsFormsApplication5.exe.config
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\bin\Release\WindowsFormsApplication5.exe
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\bin\Release\WindowsFormsApplication5.pdb
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.Form1.resources
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.Game.resources
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.Host_form.resources
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.Join.resources
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.Properties.Resources.resources
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.csproj.GenerateResource.Cache
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.exe
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.pdb

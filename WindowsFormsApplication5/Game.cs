@@ -396,10 +396,10 @@ namespace WindowsFormsApplication5
 
 
 
-                player1_x = Convert.ToInt16(info[0]);
-                player2_x = Convert.ToInt16(info[1]);
-                ball_x = Convert.ToInt16(info[2]);
-                ball_y = Convert.ToInt16(info[3]);
+                player1_x = Convert.ToInt32(info[0]);
+                player2_x = Convert.ToInt32(info[1]);
+                ball_x = Convert.ToInt32(info[2]);
+                ball_y = Convert.ToInt32(info[3]);
                 MoveCallback(ball_x, ball_y);
             }
         }
@@ -418,7 +418,7 @@ namespace WindowsFormsApplication5
                     aux += Convert.ToChar(b[i]);
                 }
 
-                player2_x = Convert.ToInt16(aux);
+                player2_x = Convert.ToInt32(aux);
 
             }
         }
