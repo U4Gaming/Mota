@@ -107,8 +107,7 @@ namespace WindowsFormsApplication5
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] ba = new byte[100];
                 
-                while (true)
-                {
+
 
                     byte[] b = new byte[100];
                     int k = stm.Read(b, 0, ba.Length);
@@ -119,7 +118,7 @@ namespace WindowsFormsApplication5
                         aux += Convert.ToChar(b[i]);
                     }
                     info = aux.Split('?');
-                }
+                
             }
             catch (Exception exc)
             {
