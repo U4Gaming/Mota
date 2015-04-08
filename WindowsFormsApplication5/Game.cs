@@ -32,13 +32,16 @@ namespace WindowsFormsApplication5
         private int vel_y;
         private int punt_player1;
         private int punt_player2;
-
+        private TcpClient tcpclnt;
+        private Stream stm;
+        private TcpListener myClients;
+        private Socket s;
         public Game(TcpListener tcplist, Socket sock)
         {
 
             this.Focus();
-            TcpListener myClients = tcplist;
-            Socket s = sock;
+            myClients = tcplist;
+            s = sock;
             InitializeComponent();
             DrawArea = new Bitmap(pictureBox1.Size.Width, pictureBox1.Size.Height);
             pictureBox1.Image = DrawArea;
@@ -64,12 +67,14 @@ namespace WindowsFormsApplication5
             this.moveThread.Start();
         }
 
-        public Game(TcpListener tcplist, Stream st)
-        {
 
+
+        public Game(TcpClient tcpclnt, Stream stm)
+        {
             this.Focus();
-            TcpListener myClients = tcplist;
-            Stream s = st;
+            // TODO: Complete member initialization
+            this.tcpclnt = tcpclnt;
+            this.stm = stm;
             InitializeComponent();
             DrawArea = new Bitmap(pictureBox1.Size.Width, pictureBox1.Size.Height);
             pictureBox1.Image = DrawArea;
