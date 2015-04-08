@@ -20,7 +20,7 @@ namespace WindowsFormsApplication5
     {
 
         private Thread moveThread = null;
-        delegate void SetMoveCallback(int ball_x, int ball_y);
+        delegate void PaintGameCallback();
         private Bitmap DrawArea;
         private int width;
         private int height;
@@ -158,10 +158,7 @@ namespace WindowsFormsApplication5
             graphics.Dispose();
 
         }
-        public void Game_Shown(Object sender, EventArgs e)
-        {
-            Activate();
-        }
+
         private void paint_player1(int pos_x)
         {
 
@@ -376,7 +373,7 @@ namespace WindowsFormsApplication5
             player2_x = Convert.ToInt16(info[1]);
             ball_x = Convert.ToInt16(info[2]);
             ball_y = Convert.ToInt16(info[3]);
-            paint(ball_x, ball_y, player1_x, player2_x);
+            MoveCallback(ball_x, ball_y);
         }
     }
 }
