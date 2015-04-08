@@ -73,20 +73,13 @@ namespace WindowsFormsApplication5
 
                 /* Start Listeneting at the specified port */
                 myClients.Start();
-
-                Debug.WriteLine("The server is running at port 8001...");
-                Debug.WriteLine("The local End point is  :" +
-                                  myClients.LocalEndpoint);
-                Debug.WriteLine("Waiting for a connection.....");
                 s = myClients.AcceptSocket();
                 while (true)
                 {
-                    
-                    Debug.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
                     byte[] b = new byte[100];
                     int k = s.Receive(b);
-                    Debug.WriteLine("Recieved...");
+
                     string aux = null;
                     for (int i = 0; i < k; i++)
                     {
@@ -112,12 +105,6 @@ namespace WindowsFormsApplication5
                     }
                 }
 
-                /*ASCIIEncoding asen = new ASCIIEncoding();
-                s.Send(asen.GetBytes("The string was recieved by the server."));
-                Debug.WriteLine("\nSent Acknowledgement");
-                //clean up
-                s.Close();
-                myList.Stop();*/
 
             }
             catch (Exception e)

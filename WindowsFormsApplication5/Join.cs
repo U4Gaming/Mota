@@ -75,17 +75,13 @@ namespace WindowsFormsApplication5
             try
             {
                 tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
+               
                 IPAddress ipAd = IPAddress.Parse(ip);
                 tcpclnt.Connect(ipAd, port);
                 // use the ipaddress as in the server program
 
-                Console.WriteLine("Connected");
-                Console.Write("string to be transmitted : " + name);
-
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] ba = asen.GetBytes("connect?" + name);
-                Console.WriteLine("Transmitting.....");
                 stm = tcpclnt.GetStream();
                 stm.Write(ba, 0, ba.Length);
 
@@ -94,7 +90,7 @@ namespace WindowsFormsApplication5
                 {
                     byte[] b = new byte[100];
                     int k = stm.Read(b, 0, ba.Length);
-                    Debug.WriteLine("Recieved...");
+                  
                     string aux = null;
                     for (int i = 0; i < k; i++)
                     {
