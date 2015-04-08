@@ -37,11 +37,11 @@ namespace WindowsFormsApplication5
         private Stream stm;
         private TcpListener myClients;
         private Socket s;
-
+        private bool ishost;
         //host constructor
         public Game(TcpListener tcplist, Socket sock)
         {
-
+            ishost = true;
             this.Focus();
             myClients = tcplist;
             s = sock;
@@ -90,6 +90,7 @@ namespace WindowsFormsApplication5
         //Client constructor
         public Game(TcpClient tcpclnt, Stream stm)
         {
+            ishost = false;
             this.Focus();
             // TODO: Complete member initialization
             this.tcpclnt = tcpclnt;
@@ -215,7 +216,7 @@ namespace WindowsFormsApplication5
         {
             while (true)
             {
-                Thread.Sleep(1);
+                Thread.Sleep(50);
 
                 MoveCallback(ball_x, ball_y);
                 ball_x += vel_x;
@@ -253,8 +254,9 @@ namespace WindowsFormsApplication5
             {
                 DrawArea = new Bitmap(pictureBox1.Size.Width, pictureBox1.Size.Height);
                 pictureBox1.Image = DrawArea;
-                CheckCollisions();
-
+                if(ishost){
+                    CheckCollisions();
+                }
 
                 paint(ball_x, ball_y, player1_x, player2_x);
             }
