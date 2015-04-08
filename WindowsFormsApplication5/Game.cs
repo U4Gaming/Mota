@@ -36,12 +36,15 @@ namespace WindowsFormsApplication5
         private Stream stm;
         private TcpListener myClients;
         private Socket s;
+
+
         public Game(TcpListener tcplist, Socket sock)
         {
 
             this.Focus();
             myClients = tcplist;
             s = sock;
+            myClients.Start();
             InitializeComponent();
             DrawArea = new Bitmap(pictureBox1.Size.Width, pictureBox1.Size.Height);
             pictureBox1.Image = DrawArea;
@@ -62,6 +65,21 @@ namespace WindowsFormsApplication5
             label2.Text = "Player 2: " + Convert.ToString(punt_player2) + " points";
            
             //envia informacion al cliente
+            ASCIIEncoding asen = new ASCIIEncoding();
+            byte[] buffer;
+            if (s != null)
+            {
+                try
+                {
+                    buffer = asen.GetBytes(player1_x + "?" + player2_x + "?" + ball_x + "?" + ball_y );
+                    s.Send(buffer);
+                }
+                catch
+                {
+                }
+
+            }
+
 
             this.moveThread = new Thread(new ThreadStart(this.MoveBall));
             this.moveThread.Start();
@@ -82,11 +100,38 @@ namespace WindowsFormsApplication5
             height = DrawArea.Height;
 
             //recibe informacion del servidor
+            String[] info = null;
+            try
+            {
 
-            player1_x = 1;
-            player2_x = width - 20;
-            ball_x = width / 2 - 5;
-            ball_y = height / 2 - 5;
+                ASCIIEncoding asen = new ASCIIEncoding();
+                byte[] ba = new byte[100];
+                
+                while (true)
+                {
+
+                    byte[] b = new byte[100];
+                    int k = stm.Read(b, 0, ba.Length);
+                    
+                    string aux = null;
+                    for (int i = 0; i < k; i++)
+                    {
+                        aux += Convert.ToChar(b[i]);
+                    }
+                    info = aux.Split('?');
+                }
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error..... " + exc.StackTrace);
+            }
+        
+
+
+            player1_x = Convert.ToInt16(info[0]);
+            player2_x = Convert.ToInt16(info[1]);
+            ball_x = Convert.ToInt16(info[2]);
+            ball_y = Convert.ToInt16(info[3]);
             vel_x = -3;
             vel_y = -2;
             punt_player1 = 0;

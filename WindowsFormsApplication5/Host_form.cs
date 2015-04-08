@@ -126,11 +126,6 @@ namespace WindowsFormsApplication5
             }    
         }
 
-        private void send_message(String message)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
            
