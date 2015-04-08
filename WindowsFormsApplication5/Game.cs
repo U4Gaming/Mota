@@ -304,7 +304,6 @@ namespace WindowsFormsApplication5
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Bien!");
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
@@ -377,6 +376,7 @@ namespace WindowsFormsApplication5
             player2_x = Convert.ToInt16(info[1]);
             ball_x = Convert.ToInt16(info[2]);
             ball_y = Convert.ToInt16(info[3]);
+            paint(ball_x, ball_y, player1_x, player2_x);
         }
     }
 }
