@@ -20,7 +20,8 @@ namespace WindowsFormsApplication5
     {
 
         private Thread moveThread = null;
-        delegate void PaintGameCallback();
+        delegate void SetMoveCallback(int ball_x, int ball_y);
+
         private Bitmap DrawArea;
         private int width;
         private int height;
@@ -343,37 +344,41 @@ namespace WindowsFormsApplication5
         private void ListenServer()
         {
             String[] info = null;
-            try
+            ASCIIEncoding asen = new ASCIIEncoding();
+            while (true)
             {
-
-                ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = new byte[100];
-
-
-
-                byte[] b = new byte[100];
-                int k = stm.Read(b, 0, ba.Length);
-
-                string aux = null;
-                for (int i = 0; i < k; i++)
+                try
                 {
-                    aux += Convert.ToChar(b[i]);
+
+
+                    byte[] ba = new byte[100];
+
+
+
+                    byte[] b = new byte[100];
+                    int k = stm.Read(b, 0, ba.Length);
+
+                    string aux = null;
+                    for (int i = 0; i < k; i++)
+                    {
+                        aux += Convert.ToChar(b[i]);
+                    }
+                    info = aux.Split('?');
+
                 }
-                info = aux.Split('?');
+                catch (Exception exc)
+                {
+                    Console.WriteLine("Error..... " + exc.StackTrace);
+                }
 
+
+
+                player1_x = Convert.ToInt16(info[0]);
+                player2_x = Convert.ToInt16(info[1]);
+                ball_x = Convert.ToInt16(info[2]);
+                ball_y = Convert.ToInt16(info[3]);
+                MoveCallback(ball_x, ball_y);
             }
-            catch (Exception exc)
-            {
-                Console.WriteLine("Error..... " + exc.StackTrace);
-            }
-
-
-
-            player1_x = Convert.ToInt16(info[0]);
-            player2_x = Convert.ToInt16(info[1]);
-            ball_x = Convert.ToInt16(info[2]);
-            ball_y = Convert.ToInt16(info[3]);
-            MoveCallback(ball_x, ball_y);
         }
     }
 }
