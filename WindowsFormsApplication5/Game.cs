@@ -133,10 +133,10 @@ namespace WindowsFormsApplication5
         
 
 
-            player1_x = Convert.ToInt16(info[0]);
-            player2_x = Convert.ToInt16(info[1]);
-            ball_x = Convert.ToInt16(info[2]);
-            ball_y = Convert.ToInt16(info[3]);
+            player1_x = Convert.ToInt32(info[0]);
+            player2_x = Convert.ToInt32(info[1]);
+            ball_x = Convert.ToInt32(info[2]);
+            ball_y = Convert.ToInt32(info[3]);
             vel_x = -3;
             vel_y = -2;
             punt_player1 = 0;
@@ -232,7 +232,8 @@ namespace WindowsFormsApplication5
                 {
                     try
                     {
-                        buffer = asen.GetBytes(player1_x + "?" + player2_x + "?" + ball_x + "?" + ball_y);
+                        //+ player2_x + "?"
+                        buffer = asen.GetBytes(player1_x + "?"  + ball_x + "?" + ball_y);
                         s.Send(buffer);
                     }
                     catch
@@ -397,9 +398,9 @@ namespace WindowsFormsApplication5
 
 
                 player1_x = Convert.ToInt32(info[0]);
-                player2_x = Convert.ToInt32(info[1]);
-                ball_x = Convert.ToInt32(info[2]);
-                ball_y = Convert.ToInt32(info[3]);
+                //player2_x = Convert.ToInt32(info[1]);
+                ball_x = Convert.ToInt32(info[1]);
+                ball_y = Convert.ToInt32(info[2]);
                 MoveCallback(ball_x, ball_y);
             }
         }

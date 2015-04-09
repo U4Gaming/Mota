@@ -9,3 +9,4 @@ C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\Win
 C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.csproj.GenerateResource.Cache
 C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.exe
 C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.pdb
+C:\Users\migarcia\Documents\GitHub\Mota\WindowsFormsApplication5\obj\Release\WindowsFormsApplication5.csprojResolveAssemblyReference.cache
